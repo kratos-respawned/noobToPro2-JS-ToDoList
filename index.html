@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSNewDiv2</title>
+    <style>
+        *{
+            box-sizing: content-box;
+        }
+        body{
+            margin-inline: 1rem;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        .parent{
+            width: 80%;
+            height: 40em;
+            border: 2px solid gray;
+            background-color: palevioletred;
+        }
+        .btn{
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .cinput{
+            width: 70%;
+            height: 1.5rem;
+        }
+        .fluid{
+            margin-inline: 1rem;
+            border: 2px solid gray;
+            text-align: center;
+            margin-bottom: 1rem;
+            padding: 0.5em;
+            font-style: italic;
+            font-size: x-large;
+            background-color: #ecaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="fluid" style="background-color: palevioletred; border :0 ;">TO-DO List</div>
+        <div class="btn">
+            <input type="text" id='getInfo' class="cinput">
+            <button>add</button>
+        </div>
+    </div>
+    <script>
+        const parent=document.querySelector(".parent");
+        const btn=document.querySelector('button');
+       
+        function add(){
+            const newDiv=document.createElement('div');
+            const text=getInfo.value;
+            newDiv.innerHTML=`<div class="fluid">${text}</div>`
+            add.innerText=getInfo.value;
+            parent.append(newDiv);
+            console.log(getInfo.value);
+        } 
+        function click(event){
+            if(event.keyCode==13)add();
+        }
+        const enter=document.getElementById('getInfo');
+        console.log(enter);
+        enter.addEventListener("keyup",click); 
+        btn.addEventListener('click',add);
+    </script>
+</body>
+</html>
