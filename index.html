@@ -52,9 +52,6 @@
         .bi:hover{
             cursor: pointer;
         }
-        .hide{
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -65,14 +62,13 @@
             <button>add</button>
             
         </div>
-        
     </div>
 
 
     <script>
         const parent=document.querySelector(".parent");
         const btn=document.querySelector('button');
-        var remClick=false;
+        var counter=0;
         var close;
         function add(){
             const newDiv=document.createElement('div');
@@ -83,12 +79,14 @@
                 else{
                     text=getInfo.value;
                 }
-            newDiv.innerHTML=`<div class="fluid">
+            newDiv.innerHTML=`<div class="fluid" id="vis${counter}">
                 <div>${text}</div>
-                <div class="bi bi-trash"></div>
+                <div class="bi bi-trash vis${counter}"></div>
                 </div>`
                 parent.append(newDiv);
-                close=document.getElementsByClassName('fluid');
+                getInfo.value='';
+                ++counter;
+                close=document.getElementsByClassName('bi');
                 check();
             } 
             function click(event){
@@ -98,12 +96,9 @@
                 remClick=true;
             }
             function remove(event){
-                let trashClick=this.children[1];
-                trashClick.addEventListener('click',changeAction);
-                if(remClick){
-                    this.remove();
-                }
-                remClick=false;
+                const str=this.getAttribute('class').slice(12,19);
+                let div=document.getElementById(str);
+                div.remove();
             }
             const enter=document.getElementById('getInfo');
             enter.addEventListener("keyup",click); 
@@ -114,9 +109,6 @@
             i.addEventListener('click',remove);
         }
         }
-        
     </script>
-
-
 </body>
 </html>
